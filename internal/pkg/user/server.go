@@ -52,11 +52,11 @@ func SetupServer(configurations *config.ServiceConfigurations) {
 	signal.Notify(sigint, os.Interrupt)
 
 	srv = &http.Server{
-		Addr:    configurations.UserURL,
+		Addr:    fmt.Sprintf(":%s", configurations.Port),
 		Handler: c.Handler(router),
 	}
 
-	log.Printf("User service running at: %s", configurations.UserURL)
+	log.Printf("User service running at: %s", configurations.Port)
 	go func() {
 		if err := srv.ListenAndServe(); !errors.Is(err, http.ErrServerClosed) {
 			log.Fatalf("failed to setup http user: %v", err)

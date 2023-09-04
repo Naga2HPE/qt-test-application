@@ -1,5 +1,5 @@
 image:
-  registry:
+  registry: snagarju
   repository: payment
   tag: latest  # will be replaced
   pullPolicy: Always
@@ -22,3 +22,13 @@ service:
   serviceType: ClusterIP
   internalPort: 8080
   externalPort: 8080
+
+deps:
+  UserURL: user.qtapp.svc.cluster.local:8080
+  PaymentURL: payment.qtapp.svc.cluster.local:8080
+  OrderURL: order.qtapp.svc.cluster.local:8080
+  SqlUser: root
+  SqlPassword: password
+  SqlHost: mysql.mysql.svc.cluster.local:3306
+  SqlDB: signoz
+  Collector: signoz-otel-collector.observability.svc.cluster.local:4317

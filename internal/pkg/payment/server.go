@@ -46,11 +46,11 @@ func SetupServer(configurations *config.ServiceConfigurations) {
 	userUrl = configurations.UserURL
 
 	srv = &http.Server{
-		Addr:    configurations.PaymentURL,
+		Addr:    fmt.Sprintf(":%s", configurations.Port),
 		Handler: c.Handler(router),
 	}
 
-	log.Printf("Payment service running at: %s", configurations.PaymentURL)
+	log.Printf("Payment service running at: %s", configurations.Port)
 	if err := srv.ListenAndServe(); !errors.Is(err, http.ErrServerClosed) {
 		log.Fatalf("failed to setup http server: %v", err)
 	}

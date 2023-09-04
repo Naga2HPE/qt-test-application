@@ -64,7 +64,7 @@ docker-build: build
 	docker build --rm -t order -f ./docker/order/Dockerfile .
 	docker build --rm -t payment -f ./docker/payment/Dockerfile .
 
-docker-build-images: docker-login  docker-build-images-user docker-build-images-order docker-build-images-payment
+docker-build-images: docker-build docker-build-images-user docker-build-images-order docker-build-images-payment
 
 docker-login:
 	docker login -u ${ARTIFACTORY_USER} -p ${ARTIFACTORY_PASSWORD}

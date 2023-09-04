@@ -54,11 +54,11 @@ func SetupServer(cnf *config.ServiceConfigurations) {
 	userUrl = cnf.UserURL
 
 	srv = &http.Server{
-		Addr:    cnf.OrderURL,
+		Addr:    fmt.Sprintf(":%s", cnf.Port),
 		Handler: c.Handler(router),
 	}
 
-	log.Printf("Order service running at: %s", cnf.OrderURL)
+	log.Printf("Order service running at: %s", cnf.Port)
 	if err := srv.ListenAndServe(); !errors.Is(err, http.ErrServerClosed) {
 		log.Fatalf("failed to setup http server: %v", err)
 	}

@@ -9,3 +9,11 @@ metadata:
     release: {{ .Release.Name }}
 data:
   PORT: {{ .Values.service.internalPort | default "8080" | quote }}
+  USER_URL: {{ .Values.deps.UserURL | default "user.qtapp.svc.cluster.local:8080" | quote }}
+  PAYMENT_URL: {{ .Values.deps.PaymentURL | default "payment.qtapp.svc.cluster.local:8080" | quote }}
+  ORDER_URL: {{ .Values.deps.OrderURL | default "order.qtapp.svc.cluster.local:8080" | quote }}
+  SQL_USER: {{ .Values.deps.SqlUser | default "root" | quote }}
+  SQL_PASSWORD: {{ .Values.deps.SqlPassword | default "password" | quote }}
+  SQL_HOST: {{ .Values.deps.SqlHost | default "mysql.mysql.svc.cluster.local:3306" | quote }}
+  SQL_DB: {{ .Values.deps.SqlDB | default "signoz" | quote }}
+  OTEL_EXPORTER_OTLP_ENDPOINT: {{ .Values.deps.Collector | default "signoz-otel-collector.observability.svc.cluster.local:4317" | quote }}
